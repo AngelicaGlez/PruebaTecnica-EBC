@@ -1,8 +1,12 @@
 package com.gonzalez.ebc.service;
 
+import com.gonzalez.ebc.model.SecuenciaCollatz;
+
+import java.util.List;
+
 public interface IService {
     public String secuenciaCollatz(Integer numero);
-    public Integer compararPares(Integer numeroAux);
+    public Integer comparar(Integer numeroAux);
     public String secuenFizzBuzz(Integer numero);
-    public String secuenciaAuxFizz(Integer numero);
+    SecuenciaCollatz secuenciaColl(Integer numeroS);
 }

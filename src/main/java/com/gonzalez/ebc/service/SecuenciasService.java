@@ -1,7 +1,11 @@
 package com.gonzalez.ebc.service;
 
+import com.gonzalez.ebc.model.SecuenciaCollatz;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Qualifier("servicio")
@@ -11,14 +15,14 @@ public class SecuenciasService implements IService {
         StringBuilder secuencia= new StringBuilder();
         secuencia.append(String.valueOf(numero));
         while (numero!=1){
-            numero=compararPares(numero);
+            numero= this.comparar(numero);
             secuencia.append(" ");
             secuencia.append(String.valueOf(numero));
         }
         return secuencia.toString();
     }
     @Override
-    public Integer compararPares(Integer numeroAux){
+    public Integer comparar(Integer numeroAux){
         if (numeroAux%2==0){
             return numeroAux/2;
         }
@@ -29,7 +33,6 @@ public class SecuenciasService implements IService {
 
     @Override
     public String secuenFizzBuzz(Integer numero) {
-        String respuesta;
             if (numero % 3 == 0 && numero % 5 == 0) {
                 return "FizzBuzz";
             } else {
@@ -43,14 +46,19 @@ public class SecuenciasService implements IService {
             }
         }
 
-
     @Override
-    public String secuenciaAuxFizz(Integer numero) {
-        StringBuilder aux= new StringBuilder();
-        for (int numeroF=1; numeroF<=20; numeroF++ ) {
-            aux.append(secuenFizzBuzz(numeroF));
-            aux.append("\n");
+    public SecuenciaCollatz secuenciaColl(Integer numeroS) {
+        SecuenciaCollatz sCollatz = new SecuenciaCollatz();
+        List<Integer> collatz = new ArrayList<>();
+        collatz.add(numeroS);
+        while (numeroS!=1){
+            numeroS= this.comparar(numeroS);
+            collatz.add(numeroS);
         }
-    return aux.toString();
+        sCollatz.setSecuencia(collatz);
+        sCollatz.setMensaje("Proceso finalizado");
+        return sCollatz;
     }
+
+
 }
