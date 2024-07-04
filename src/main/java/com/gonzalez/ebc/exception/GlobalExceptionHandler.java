@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
         SequenceCollatz resp =  new SequenceCollatz();
         String error = String.format("The parameter '%s' with value '%s' could not be converted to type '%s'",
                 ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());
-        resp.setMensaje(error);
+        resp.setMessage(error);
         return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
     }
 }
